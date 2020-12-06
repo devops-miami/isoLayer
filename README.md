@@ -9,5 +9,5 @@ This layer is responsible for maintain Dockerfiles for Helm charts. We split the
 ## Use
 This layer can be used with `Docker` and `Docker-compose` usually. In this repo we are only keeping a copy of `Atlantis Project` so you won't see docker-compose examples. I typically use `docker-compose` when I am creating projects from scratch and I am the developer. I use volumes to allow myself to work in the containers and work on the files locally.
 
-## Atlantis Project
+## Atlantis with SOPS support
 We are using `Atlantis` to automate our `Terraform` deployments but are missing support for `Terragrunt` and `SOPS`. This project customizes the projects `Dockerfile` to download the required bins and set an alias for `Terragrunt/Terraform`.
