@@ -26,13 +26,16 @@ RUN ATLANTIS_VERSION="0.15.1" && \
     unzip atlantis_linux_amd64.zip -d /usr/local/bin && \
     rm atlantis_linux_amd64.zip
 
+# Copy over the terragrunt init script
+COPY terragrunt.sh /usr/local/bin/terragrunt.sh
+
 # Pull down Terragrunt from Mozilla
 RUN TERRAGRUNT_VERSION="0.26.7" && \
     curl -LOs https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 && \
     chmod +x terragrunt_linux_amd64 && \
     mv terragrunt_linux_amd64 /usr/local/bin/terragrunt && \
     rm /usr/local/bin/terraform && \
-    ln -s /usr/local/bin/terragrunt /usr/local/bin/terraform
+    ln -s /usr/local/bin/terragrunt.sh /usr/local/bin/terraform
 
 # Pull down SOPS from Mozilla
 RUN SOPS_VERSION="3.6.1" && \
@@ -41,7 +44,7 @@ RUN SOPS_VERSION="3.6.1" && \
     mv sops-v${SOPS_VERSION}.linux /usr/local/bin/sops
 
 # copy docker entrypoint
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh 
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["server"]
