@@ -11,3 +11,14 @@ This layer can be used with `Docker` and `Docker-compose` usually. In this repo 
 
 ## Atlantis with SOPS support
 We are using `Atlantis` to automate our `Terraform` deployments but are missing support for `Terragrunt` and `SOPS`. This project customizes the projects `Dockerfile` to download the required bins and set an alias for `Terragrunt/Terraform`.
+
+### Windows Notes
+Line endings yo..
+
+Windows ends lines in a carriage return and a linefeed \r\n,
+While Linux and macOS only use a linefeed \n.
+```sh
+git config --global core.autocrlf input
+```
+Found at docker/toolbox#126
+https://github.com/docker/compose/issues/2301
