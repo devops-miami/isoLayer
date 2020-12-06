@@ -12,9 +12,11 @@ We need CI/CD for `Terraform` and picked `Atlantis` as the automation system for
 Some of the most common commands for running this system.
 
 ```sh
+# Build the image - adjust the version accordinly
+docker build -t atlantis:v1 .
 # This will run the container and set the env variable for
 # the location of terraform that terragrunt uses
 # we use this to trick atlantis into running terragrunt
 # you can adjust your terraform version accordingly
-➜ docker run -e terragrunt-tfpath=/usr/local/bin/tf/versions/0.13.5/terraform -it atlantis:v10 sh
+docker run -e terragrunt-tfpath=/usr/local/bin/tf/versions/0.13.5/terraform -it atlantis:v1 sh
 ```
